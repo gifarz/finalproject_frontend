@@ -6,6 +6,7 @@ import App from "./App";
 import About from "./Router/About";
 import Profile from './Router/Profile';
 import {SignupForm} from './FormValidation/SignupForm';
+import {SigninForm} from './FormValidation/SigninForm';
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -46,6 +47,11 @@ const routing = (
        Signup
       </Link>
      </li>
+     <li className="nav-item">
+      <Link className="navbar-brand" to="/signin">
+       Signin
+      </Link>
+     </li>
     </ul>
    </div>
   </nav>
@@ -53,6 +59,7 @@ const routing = (
   <Route path="/about" component={About} />
   <Route path="/profile" component={Profile} />
   <Route path="/signup" component={SignupForm} />
+  <Route path="/signin" component={SigninForm} />
 
  </Router>
 );
