@@ -6,3 +6,7 @@ export default function App(){
         <Greetings name="Gifar" age="22" gender="Man"/>
     )
 }
+
+
+
+

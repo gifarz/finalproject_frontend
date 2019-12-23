@@ -4,8 +4,14 @@ class UserName2 extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: "Gifar"
+            username: "g"
         }
+    }
+
+    changeName = () => {
+        this.setState({
+            username: "Zaini"
+        })
     }
 
     render(){
