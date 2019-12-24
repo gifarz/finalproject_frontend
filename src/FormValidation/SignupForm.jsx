@@ -20,7 +20,9 @@ const validate = values => {
 
   if (!values.password) {
     errors.password = 'Required';
-  } 
+  } else if (values.password.length < 6) {
+    errors.password = 'Password minimal 6 characters'
+  }
 
   if (!values.passwordConfirmation) {
     errors.passwordConfirmation = 'Required';
@@ -47,7 +49,7 @@ export const SignupForm = () => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} className="container m-5">
+    <form onSubmit={formik.handleSubmit} className="container mt-5">
       <h2>Please Sign Up!</h2>
       <label htmlFor="name" style={{marginTop: "20px"}}>Name</label>
       <input
@@ -97,7 +99,7 @@ export const SignupForm = () => {
       />
       {formik.errors.passwordConfirmation ? <div style={{color: "red"}}>{formik.errors.passwordConfirmation}</div> : null}
 
-      <Button type="submit" color="primary" style={{marginTop: "20px"}}>Submit</Button>
+      <Button type="submit" color="success" style={{marginTop: "20px"}}>Sign Up</Button>
     </form>
   );
 };

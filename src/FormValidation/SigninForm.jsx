@@ -33,7 +33,7 @@ export const SigninForm = () => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} className="container m-5">
+    <form onSubmit={formik.handleSubmit} className="container mt-5">
       <h2>Please Sign In!</h2>
       <label htmlFor="name" style={{marginTop: "20px"}}>Name</label>
       <input
@@ -59,7 +59,7 @@ export const SigninForm = () => {
       />
       {formik.errors.password ? <div>{formik.errors.password}</div> : null}
 
-      <Button type="submit" color="primary" style={{marginTop: "20px"}}>Submit</Button>
+      <Button type="submit" color="success" style={{marginTop: "20px"}}>Sign In</Button>
     </form>
   );
 };

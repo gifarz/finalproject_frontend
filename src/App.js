@@ -1,10 +1,6 @@
 import React from 'react';
-// import NameForm from './FormValidation/NameForm';
-// import MultiForm from './FormValidation/MultiForm';
-// import Formik from './FormValidation/FormikValidation'
-// import {ValidationSchemaExample} from './FormValidation/ValidationSchemaExample';
-// import {SignupForm} from './FormValidation/SignupForm';
-import Home from './Router/Home'
+import Home from './Router/Home';
+import Form from '././ReactHook/Form';
 
 function App() {
   return (
