@@ -35,7 +35,7 @@ function FormHook(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        setError(error);
+        setError(errors);
         setIsSubmitting(true);
         Axios.post(apiUrl, data)
         .then(res => {
@@ -75,6 +75,7 @@ function FormHook(props) {
     } else if (data.title.length < 3) {
         errors.title = "Title needs to be more than 3 characters";
     }
+    
     if (!data.author) {
       errors.author = "Author is required";
     } else if (data.author.length < 3) {
