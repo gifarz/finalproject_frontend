@@ -8,6 +8,7 @@ import Profile from './UserProfile/UserProfile';
 import NavBar from './Router/NavBar';
 import {SignupForm} from './FormValidation/SignupForm';
 import {SigninForm} from './FormValidation/SigninForm';
+import Update from './API/Update';
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -15,6 +16,7 @@ const routing = (
  <Router>
   <NavBar/>  
   <Route exact path="/" component={App} />
+  <Route path="/updatebook/:id" component={Update}/>
   <Route path="/about" component={About} />
   <Route path="/profile" component={Profile} />
   <Route path="/signup" component={SignupForm} />

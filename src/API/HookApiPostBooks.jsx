@@ -3,28 +3,57 @@ import axios from 'axios';
 import {Button} from 'reactstrap'
 
 export function HookApiPostBooks() {
-    const [form, setState] = useState({
+    const [form, setForm] = useState({
         title: '',
         author: '',
         pages: '',
         language: ''
     })
+;
+    const apiUrl = "http://127.0.0.1:5000/books"
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        axios.post('http://127.0.0.1:4000/books', form)
-        console.log(form)
+    const saveBook = (e) => {
+        e.preventDefault();
+        const data = {
+            title: form.title,
+            author: form.author,
+            pages: form.pages,
+            language: form.language
+        }
+        axios.post(apiUrl, data)
+        .then(res => {
+            alert('Data berhasil ditambahkan')
+            if (res.data.redirect === '/') {
+                window.location = '/index'
+            } else if (res.data.redirect === apiUrl) {
+                window.location = apiUrl
+            }
+        }) 
+        .catch(err => {
+            window.location = apiUrl
+        })
     }
 
+    // const handleSubmit = e => {
+    //     e.preventDefault()
+    //     axios.post('http://127.0.0.1:5000/books', {
+    //         title: form.title,
+    //         author: form.author,
+    //         pages: form.pages,
+    //         language: form.language
+    //     })
+    //     console.log(form)
+    // }
+
     const updateField = e => {
-        setState({
+        setForm({
             ...form,
             [e.target.name]: e.target.value
         })
     }
 
-    return(
-        <form onSubmit={handleSubmit}>
+    return (
+        <form onSubmit={saveBook}>
             <label htmlFor="title" style={{display: "block"}} >
                 Title of Book
                 <input
@@ -77,7 +106,7 @@ export function HookApiPostBooks() {
                     }}
                 />
             </label>
-            <Button>Submit</Button>
+            <Button type="submit">Submit</Button>
         </form>
     )
 }
