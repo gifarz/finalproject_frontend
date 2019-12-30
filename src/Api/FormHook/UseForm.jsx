@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import Axios from 'axios'
 
-export const UseForm = (props, callback, validate) => {
+export const UseForm = (props, ValidateBook) => {
     
     const [book, setBook] = useState({data: []})
     const [data, setData] = useState({
@@ -27,13 +27,13 @@ export const UseForm = (props, callback, validate) => {
     
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isSubmitting) {
-          callback();
+            alert(JSON.stringify(data, null,2));
         }
     });
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setErrors(validate);
+        setErrors(ValidateBook);
         setIsSubmitting(true);
         Axios.post(apiUrl, data)
         .then(res => {

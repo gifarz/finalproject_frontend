@@ -8,7 +8,7 @@ import Profile from './UserProfile/UserProfile';
 import NavBar from './Router/NavBar';
 import {SignupForm} from './FormValidation/SignupForm';
 import {SigninForm} from './FormValidation/SigninForm';
-import Update from './API/Update';
+import Update from './API/FormHook/Update';
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 

@@ -2,9 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Axios from 'axios';
 import {Button} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
+import {useForm} from 'react-hook-form'
+// import{ UseForm } from './UseForm';
+// import ValidateBook from './ValidateBook'
 
 function FormHook(props) {
-
+    // const {watch} = useForm();
     const [book, setBook] = useState({data: []})
     const [data, setData] = useState({
         title: '',
@@ -28,7 +31,7 @@ function FormHook(props) {
     }, [])
 
     useEffect(() => {
-        if (Object.keys(error) && isSubmitting) {
+        if (Object.keys(error).length === 0 && isSubmitting) {
             alert(JSON.stringify(data, null,2));
         }
     });
@@ -43,7 +46,7 @@ function FormHook(props) {
             setBook(dataBook)
         })
         .catch(err => console.log(err))
-    } 
+    }
 
     function handleRemove(id){
         console.log(id)
@@ -72,13 +75,12 @@ function FormHook(props) {
     const errors = {};
     if (!data.title) {
         errors.title = "Title is required";
-    } else if (data.title.length < 3) {
-        errors.title = "Title needs to be more than 3 characters";
+    } else if (data.title.length < 2) {
+        errors.title = "Title needs to be more than 10 characters";
     }
-    
     if (!data.author) {
       errors.author = "Author is required";
-    } else if (data.author.length < 3) {
+    } else if (data.author.length < 3 ) {
       errors.author = "author needs to be more than 3 characters";
     }
 
@@ -87,21 +89,19 @@ function FormHook(props) {
     } 
 
     if (!data.pages) {
-    errors.pages = "pages is required";
-    } else if (data.pages.length < 3) {
-    errors.pages = "pages needs to be more than 3 characters";
-    }
+    errors.pages = "Pages is required";
+    } 
 
     if (!data.language) {
-    errors.language = "language is required";
+    errors.language = "Language is required";
     } else if (data.language.length < 3) {
     errors.language = "language needs to be more than 3 characters";
     }
 
     if (!data.publisher_id) {
-    errors.publisher_id = "publisher_id is required";
-    } else if (data.publisher_id.length < 3) {
-    errors.publisher_id = "publisher_id needs to be more than 3 characters";
+    errors.publisher_id = "Publisher Id is required";
+    } else if (data.publisher_id.length < 5) {
+    errors.publisher_id = "Publisher Id needs to be more than 5 characters";
     }
 
 
@@ -129,7 +129,7 @@ function FormHook(props) {
     return (
         <React.Fragment>
 
-            <form onSubmit={(e)=>handleSubmit(e)} noValidate >
+            <form onSubmit={(e)=>handleSubmit(e)} noValidate>
                 <div className="form-group">
                     <label>Title</label>
                     <input 
@@ -139,7 +139,7 @@ function FormHook(props) {
                         id="title" 
                         name="title" 
                         className="form-control"
-                        placeholder="Insert The Title"
+                        placeholder="Insert the title"
                     />
                     {errors.title && <p style={{color: "red"}}>{errors.title}</p> }
                 </div>
@@ -153,7 +153,7 @@ function FormHook(props) {
                         id="author" 
                         name="author" 
                         className="form-control"
-                        placeholder="Insert The Author"
+                        placeholder="Insert the author"
                     />
                     {errors.author && <p style={{color: "red"}}>{errors.author}</p> }
                 </div>
@@ -166,7 +166,7 @@ function FormHook(props) {
                         id="published_date" 
                         name="published_date" 
                         className="form-control"
-                        placeholder="Insert The Date"
+                        placeholder="Insert the date"
                     />
                     {errors.published_date && <p style={{color: "red"}}>{errors.published_date}</p> }
                 </div>
@@ -192,7 +192,7 @@ function FormHook(props) {
                         id="language" 
                         name="language" 
                         className="form-control"
-                        placeholder="Insert The Language"
+                        placeholder="Insert the language"
                     />
                     {errors.language && <p style={{color: "red"}}>{errors.language}</p> }
                 </div>
@@ -205,11 +205,11 @@ function FormHook(props) {
                         id="publisher_id" 
                         name="publisher_id" 
                         className="form-control"
-                        placeholder="Insert The Publisher ID"
+                        placeholder="Insert the publisher id"
                     />
                     {errors.publisher_id && <p style={{color: "red"}}>{errors.publisher_id}</p> }
                 </div>
-                <button className="btn btn-dark">Submit</button>
+                <button className="btn btn-dark" disabled={!errors}>Submit</button>
             </form>
 
             <table 
