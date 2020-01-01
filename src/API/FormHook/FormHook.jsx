@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import {Button} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
-import {useForm} from 'react-hook-form'
-// import{ UseForm } from './UseForm';
-// import ValidateBook from './ValidateBook'
+import moment from 'moment';
 
 function FormHook(props) {
-    // const {watch} = useForm();
+
     const [book, setBook] = useState({data: []})
     const [data, setData] = useState({
         title: '',
@@ -15,7 +13,7 @@ function FormHook(props) {
         published_date: '',
         pages: '',
         language: '',
-        publisher_id: ''
+        publisher_id: ''                                                                                                                                                                                            
     })
     const [error, setError] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,7 +21,7 @@ function FormHook(props) {
     const apiUrl = 'http://127.0.0.1:5000/books/';
 
     useEffect(() => {
-        Axios.get(apiUrl)
+        axios.get(apiUrl)
         .then(res => {
             setBook(res.data)
         })
@@ -36,11 +34,10 @@ function FormHook(props) {
         }
     });
 
-    function handleSubmit(e) {
-        e.preventDefault()
+    const handleSubmit = () => {
         setError(errors);
         setIsSubmitting(true);
-        Axios.post(apiUrl, data)
+        axios.post(apiUrl, data)
         .then(res => {
             const dataBook = {...book}
             setBook(dataBook)
@@ -48,11 +45,11 @@ function FormHook(props) {
         .catch(err => console.log(err))
     }
 
-    function handleRemove(id){
+    const handleRemove = (id) => {
         console.log(id)
-        Axios.delete(apiUrl+id)
+        axios.delete(apiUrl+id)
         .then(res=>{
-            console.log(res.data)
+            alert('Book has been deleted')
             const dataBooks = book.filter(item=>item.id !==id)
             setBook(dataBooks)
         })
@@ -63,11 +60,11 @@ function FormHook(props) {
         const {name, value} = e.target
         setData({
             ...data,
-            [name]: value
+            [name]: value,
         })
     }
 
-    function handleUpdate(id){
+    const handleUpdate = (id) => {
         console.log(id)
         props.history.push('/updatebook/' + id)
     }
@@ -75,8 +72,8 @@ function FormHook(props) {
     const errors = {};
     if (!data.title) {
         errors.title = "Title is required";
-    } else if (data.title.length < 2) {
-        errors.title = "Title needs to be more than 10 characters";
+    } else if (data.title.length < 5) {
+        errors.title = "Title needs to be more than 5 characters";
     }
     if (!data.author) {
       errors.author = "Author is required";
@@ -85,7 +82,7 @@ function FormHook(props) {
     }
 
     if (!data.published_date) {
-    errors.date = "Date is required";
+    errors.published_date = "Date is required";
     } 
 
     if (!data.pages) {
@@ -105,9 +102,8 @@ function FormHook(props) {
     }
 
 
-    const display = book.data.map(item => 
+    const listbook = book.data.map(item => 
         <tr key={item.id}>
-            <td>{item.id}</td>
             <td>{item.title}</td>
             <td>{item.author}</td>
             <td>{item.published_date}</td>
@@ -121,7 +117,11 @@ function FormHook(props) {
                     style={{marginRight: "10px"}}
                     >Update
                 </Button>
-                <Button color="danger" onClick={()=> handleRemove(item.id)}>Delete</Button>
+                <Button 
+                    color="danger" 
+                    onClick={()=> handleRemove(item.id)}
+                >Delete
+                </Button>
             </td>
         </tr>
     )
@@ -133,7 +133,7 @@ function FormHook(props) {
                 <div className="form-group">
                     <label>Title</label>
                     <input 
-                        onChange={handleChange} 
+                        onChange={(e)=>handleChange(e)} 
                         value={data.title} 
                         type="text" 
                         id="title" 
@@ -161,7 +161,7 @@ function FormHook(props) {
                     <label>Published Date</label>
                     <input 
                         onChange={(e)=>handleChange(e)} 
-                        value={data.published_date} 
+                        value={moment(data.published_date).format('YYYY-MM-DD')} 
                         type="date" 
                         id="published_date" 
                         name="published_date" 
@@ -209,7 +209,7 @@ function FormHook(props) {
                     />
                     {errors.publisher_id && <p style={{color: "red"}}>{errors.publisher_id}</p> }
                 </div>
-                <button className="btn btn-dark" disabled={!errors}>Submit</button>
+                <button className="btn btn-dark" disabled={data.disabled}>Submit</button>
             </form>
 
             <table 
@@ -218,7 +218,6 @@ function FormHook(props) {
             >
                 <thead className="thead-dark">
                     <tr>
-                        <th>Id</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Published Date</th>
@@ -229,7 +228,7 @@ function FormHook(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {display}
+                    {listbook}
                 </tbody>
             </table>
 

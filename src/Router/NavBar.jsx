@@ -9,7 +9,7 @@ const NavBar = (props) => {
   return (
     <div>
       <Navbar color="light" light>
-        <NavbarBrand href="/" className="mr-auto">React Challenge</NavbarBrand>
+        <NavbarBrand href="/" className="mr-auto">React-Challenge</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
@@ -24,6 +24,12 @@ const NavBar = (props) => {
             </NavItem>
             <NavItem>
               <NavLink href="/signin">Signin</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/register">Register</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/login">Login</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

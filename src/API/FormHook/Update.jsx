@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Axios from 'axios';
+import moment from 'moment';
 
 function Update(props) {
 
@@ -13,14 +14,14 @@ function Update(props) {
     })
     const apiUrl = 'http://127.0.0.1:5000/books/';
 
-    // useEffect(() => {
-    //     const id = props.match.params.id;
-    //     Axios.get(apiUrl+id)
-    //     .then(res => {
-    //         setData(res.data)
-    //     })
-    //     .catch(error => console.log(error))
-    // })
+    useEffect(() => {
+        const id = props.match.params.id;
+        Axios.get(apiUrl+id)
+        .then(res => {
+            setData(res.data.data)
+        })
+        .catch(error => console.log(error))
+    }, [])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -70,7 +71,7 @@ function Update(props) {
                     <label>Published Date</label>
                     <input 
                         onChange={(e)=>handleChange(e)} 
-                        value={data.published_date} 
+                        value={moment(data.published_date).format('YYYY-MM-DD')}
                         type="date" 
                         id="published_date" 
                         name="published_date" 
