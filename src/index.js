@@ -2,31 +2,36 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import App from "./App";
-import About from "./Router/About";
-import Profile from './UserProfile/UserProfile';
 import NavBar from './Router/NavBar';
-import {SignupForm} from './FormValidation/SignupForm';
-import {SigninForm} from './FormValidation/SigninForm';
-import Update from './API/FormHook/Update';
-import Register from './JWT/Register';
-import Login from './JWT/Login';
-// import Context from './Context'
+import Register from './FinalProject/Register';
+import Login from './FinalProject/Login';
+import LoginSuccess from './FinalProject/LoginSuccess';
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Book from "./FinalProject/Book";
+import AddBook from './FinalProject/AddBook';
+import CardBook from './FinalProject/CardBook/CardBook';
+import UpdateBook from './FinalProject/UpdateBook';
+import CardDetails from "./FinalProject/CardBook/CardDetails";
+import Users from './FinalProject/ManageUser';
+import EditProfile from './FinalProject/EditProfile';
+import LandingPage from './FinalProject/LandingPage';
 
 const routing = (
-        <Router>
-            <NavBar/>  
-            <Route exact path="/" component={App} />
-            <Route path="/updatebook/:id" component={Update}/>
-            <Route path="/about" component={About} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/signup" component={SignupForm} />
-            <Route path="/signin" component={SigninForm} />
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={Login} />
-        </Router>
+    <Router>
+        <NavBar/>  
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <Route path="/dashboard" component={LoginSuccess} />
+        <Route path="/book" component={CardBook} />
+        <Route path="/addbook" component={Book} />
+        <Route path="/addbook/add" component={AddBook} />
+        <Route path="/bookupdate/:id" component={UpdateBook} />
+        <Route path="/bookdetails/:id" component={CardDetails} />
+        <Route path="/users" component={Users} />
+        <Route path="/editprofile/:id" component={EditProfile} />
+    </Router>
 )
 
 

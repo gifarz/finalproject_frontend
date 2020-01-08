@@ -1,33 +1,26 @@
 import React ,{useState} from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
-// import Auth from './Context/Auth';
+import './style.css';
 
  const Register = (props) => {
 
     const {register, errors, handleSubmit} = useForm({mode: "onChange" })
-    const url = "http://127.0.0.1:8080/api/auth/signup"
+    const url = "http://127.0.0.1:8000/api/auth/signup"
     const [form,setForm ] = useState({
         name:"",
         username:"",
         email:"",
         password:"",
-        roles: ["USER"]
+        roles: ["ADMIN"]
     })
 
-    // const handleRoles = (e) => {
-    //     const role = e.target.value;
-    //     if(role === "USER") {
-    //         console.log('this is user')
-    //     } else if(role === "ADMIN") {
-    //         console.log('this is admin')
-    //     }
-    // }
-
-    const submit = () => {
-        // e.preventDefault()
+    const Submit = () => {
         axios.post(url,form)
         .then(res=>{
+            if(res.status === 201) {
+                console.log(res.data.status)
+            }
             alert('Registered successfully!')
             props.history.push("/login")
         })
@@ -44,22 +37,22 @@ import {useForm} from 'react-hook-form';
 		})
     }
     return (
-        // <Auth.Provider value={{submit}}>
-            <div 
-            style={{
-                background: 'url(https://images7.alphacoders.com/313/313719.jpg) center / cover',
-                position: "relative",
-                height: "850px",
-                paddingTop: "30px"
-            }}>
-                <div className="card" style={{width: "600px", margin: "auto"}}>
+            <div className="bg"
+                style={{
+                    background: 'url(https://images.wallpaperscraft.com/image/library_books_reading_125466_1920x1080.jpg) center / cover',
+                    position: "relative",
+                    height: "750px",
+                    paddingTop: "50px"
+                }}
+            >
+                <div className="card" style={{width: "500px", margin: "auto", zIndex: 2}}>
                     <div className="card-body">
-                    <form onSubmit={handleSubmit(submit)}>
+                    <form onSubmit={handleSubmit(Submit)}>
                         <div>
                             <h3>Please Register!</h3>
                             <hr/>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group ">
                             <label>Name</label>
                             <input 
                                 onChange={(e) => handleChange(e)}
@@ -70,11 +63,7 @@ import {useForm} from 'react-hook-form';
                                 className="form-control" 
                                 placeholder="Insert name"
                                 ref={register({
-                                    required: "This is required",
-                                    minLength: {
-                                        value: 3,
-                                        message: "Minimal character is 3"
-                                    }
+                                    required: "This is required"
                                 })}
                             />
                         </div>
@@ -91,11 +80,7 @@ import {useForm} from 'react-hook-form';
                                 className="form-control" 
                                 placeholder="Insert username"
                                 ref={register({
-                                    required: "This is required",
-                                    minLength: {
-                                        value: 3,
-                                        message: "Minimal character is 3"
-                                    }
+                                    required: "This is required"
                                 })}
                             />
                         </div>
@@ -139,18 +124,6 @@ import {useForm} from 'react-hook-form';
                         </div>
                         {errors.password && <p style={{color: "red"}}>{errors.password.message}</p> }
 
-                        {/* <div className="form-group">
-                            <label>User Role</label>
-                            <input 
-                                onChange={(e) => handleRoles(e)}
-                                value={form.roles}
-                                type="roles" 
-                                name="roles" 
-                                id="roles" 
-                                className="form-control" 
-                                placeholder="Insert roles"
-                            />
-                        </div> */}
                         <p>Already have an account ? Please <a href="/login">login here</a></p>
                         <button className="btn btn-success">Register</button>
                     </form>
@@ -158,7 +131,6 @@ import {useForm} from 'react-hook-form';
                 </div>
             </div>
         </div>
-    // </Auth.Provider>
     )
 
 }

@@ -1,9 +1,10 @@
 import React ,{useState} from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import './style.css'
 
  const Login = (props) => {
 
-    const url = "http://127.0.0.1:8080/api/auth/signin"
+    const url = "http://127.0.0.1:8000/api/auth/signin"
 
     const [form,setForm ] = useState({
         username:"",
@@ -16,9 +17,13 @@ import axios from 'axios'
         .then(res=>{
             if(res.status === 200){
                 sessionStorage.setItem("token",res.data.accessToken);
+                sessionStorage.setItem("roles", res.data.roles)
                 alert(
                     `Login Succes \nYour Acces Token is : ${sessionStorage.getItem('token')}`
                 )
+                window.location.replace('/dashboard/')
+            } else if(res.status === 404){
+                alert('Invalid username or password')
             } else {
                 throw new Error('Login Failed')
             }
@@ -34,17 +39,17 @@ import axios from 'axios'
 			...form,
 			[name] : value
 		})
-	}
+    }
 
     return (
-        <div 
+        <div className="bg"
         style={{
-            background: 'url(https://images7.alphacoders.com/313/313719.jpg) center / cover',
+            background: 'url(https://images.wallpaperscraft.com/image/library_books_reading_125466_1920x1080.jpg) center / cover',
             position: "relative",
-            height: "615px",
+            height: "610px",
             paddingTop: "100px"
         }}>
-            <div className="card" style={{width: "600px", margin: "auto"}}>
+            <div className="card" style={{width: "500px", margin: "auto", zIndex: 2}}>
                 <div className="card-body">
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div>
@@ -52,7 +57,10 @@ import axios from 'axios'
                         <hr/>
                     </div>
                     <div className="form-group">
+{}
                         <label>Username</label>
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="inputGroupPrepend3">@</span>
                         <input 
                             onChange={(e) => handleChange(e)}
                             value={form.username}
@@ -62,6 +70,7 @@ import axios from 'axios'
                             className="form-control" 
                             placeholder="Insert username"
                         />
+                        </div>
                     </div>
                     <div className="form-group"> 
                         <label>Password</label>
@@ -75,7 +84,8 @@ import axios from 'axios'
                             placeholder="Insert password"
                         />
                     </div>
-                    <button className="btn btn-danger">Login</button>
+                    <p>Don't have an account ? Please register <a href="/register">here</a> </p>
+                    <button className="btn btn-success">Login</button>
                 </form>
                     
             </div>
