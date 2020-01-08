@@ -36,9 +36,9 @@ const CardBook = (props) => {
       <div className="row justify-content-between">
           {Book.book.map(card => (
             <div key={card.id}>
-              <Card style={{width: "350px"}} className="mb-4">
+              <Card style={{width: "310px"}} className="mb-4">
                 <CardImg top src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkB9gxfXeF9D4ClN1-fhRO7_t3GGSvWS9Y58RyQkmQnKNZZhZ9" alt="Card image cap"
-                style={{width: "300px"}}
+                style={{width: "300px", height: "250px"}}
                 />
                 <CardBody>
                   <CardTitle>Title : {card.title}</CardTitle>

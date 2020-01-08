@@ -28,7 +28,7 @@ function Comment(props) {
             console.log(res.data)
             setBook(res.data.book)
         })
-    }, [])
+    }, [book])
 
     return (
         <>

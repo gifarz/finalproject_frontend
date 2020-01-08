@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import {withRouter} from 'react-router-dom';
 import { useEffect } from "react";
 import axios from "axios";
 import CommentForm from "../CommentSection/CommentForm";
 
-export default function CardDetails(props) {
+function CardDetails(props) {
 
   const [book, setBook] = useState({ book: [] });
 
@@ -21,7 +22,7 @@ export default function CardDetails(props) {
         setBook(res.data);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [book]);
 
   return (
     <div className="container mt-5">
@@ -54,3 +55,5 @@ export default function CardDetails(props) {
     </div>
   );
 }
+
+export default withRouter(CardDetails)

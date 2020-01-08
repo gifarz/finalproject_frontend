@@ -29,7 +29,7 @@ export default function Book(props){
 				console.log(res.data)
 				setBook(res.data)
 			}).catch(err=>console.error(err))
-		},[]
+		},[book]
 	)
 
  	const handleRemove = (id) => {
@@ -48,19 +48,12 @@ export default function Book(props){
 		props.history.push('/bookupdate/'+id)
 	}
 
-	const handleSubmit = ({e,submit}) => {
+	const handleSubmit = (e) => {
+		e.preventDefault()
 		axios.post(url, data, {headers: {
 			"Authorization" : sessionStorage.getItem('token')
 		}})
 		.then(res=>{
-			const {name, value} = e.target
-			submit.push({
-                [name]: value
-            })
-            setData({
-                submit,
-                ...data
-            })
             console.log(res.data)
 			const mydata={...book}
             setBook(mydata)
