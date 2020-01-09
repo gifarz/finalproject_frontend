@@ -8,7 +8,7 @@ function CardDetails(props) {
 
   const [book, setBook] = useState({ book: [] });
 
-  const url = "http://127.0.0.1:8000/book/";
+  const url = "http://127.0.0.1:8001/book/";
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -22,7 +22,7 @@ function CardDetails(props) {
         setBook(res.data);
       })
       .catch(err => console.log(err));
-  }, [book]);
+  }, []);
 
   return (
     <div className="container mt-5">

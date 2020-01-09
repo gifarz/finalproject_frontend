@@ -8,7 +8,7 @@ export default function EditProfile(props) {
         password: ""
     })
 
-    const url = "http://127.0.0.1:8000/dashboard/"
+    const url = "http://127.0.0.1:8001/dashboard/"
 
 	useEffect(
         ()=>{

@@ -29,9 +29,6 @@
     "react-valida-hook": "0.0.10",
     "reactstrap": "^8.2.0",
     "use-global-hook": "^0.1.12",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1",
     "yup": "^0.28.0"
   },
   "scripts": {

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default function LoginSuccess(props) {
 
-    const url = "http://127.0.0.1:8000/dashboard"
+    const url = "http://127.0.0.1:8001/dashboard"
     const [profile, setProfile] = useState({user : []})
 
     useEffect(()=> {

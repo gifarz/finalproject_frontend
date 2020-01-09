@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Login from './Login';
+import {useForm} from 'react-hook-form'
 
 export default function Book(props){
 
-	const url = 'http://127.0.0.1:8000/book/'
+	const url = 'http://127.0.0.1:8001/book/'
 	const Token = sessionStorage.getItem('token')
 	const Roles = sessionStorage.getItem('roles')
+	const {register, errors, handleSubmit} = useForm({
+		mode: "onChange" 
+	})
 
 	const [book, setBook] = useState({book: []})
 	const [data, setData] = useState({
@@ -29,7 +33,7 @@ export default function Book(props){
 				console.log(res.data)
 				setBook(res.data)
 			}).catch(err=>console.error(err))
-		},[book]
+		},[]
 	)
 
  	const handleRemove = (id) => {
@@ -48,15 +52,16 @@ export default function Book(props){
 		props.history.push('/bookupdate/'+id)
 	}
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
+	const submit = () => {
+		// e.preventDefault()
 		axios.post(url, data, {headers: {
 			"Authorization" : sessionStorage.getItem('token')
 		}})
 		.then(res=>{
             console.log(res.data)
 			const mydata={...book}
-            setBook(mydata)
+			setBook(mydata)
+			window.location.replace('/addbook')
 		}).catch(err=>console.error(err))
 	}
 
@@ -72,9 +77,9 @@ export default function Book(props){
 			<div className="container mt-5">
 				{Roles === "2" ? 
 				<>
-					<h1>List of Books</h1>
+					<h2>Insert a new book on the form below</h2>
 					<hr/>
-					<form className="container mt-5" onSubmit={(submit)=>handleSubmit(submit)} noValidate>
+					<form className="container mt-5" onSubmit={handleSubmit(submit)} noValidate>
 						<div className="form-group">
 							<label>Title</label>
 							<input 
@@ -86,8 +91,16 @@ export default function Book(props){
 								className="form-control"
 								placeholder="Insert the title"
 								required
+								ref={register({
+									required: "This is required",
+									minLength: {
+										value: 3,
+										message: "Minimal characters is 3"
+									}
+                                })}
 							/>
 						</div>
+						{errors.title && <p style={{color: "red"}}>{errors.title.message}</p> }
 
 						<div className="form-group">
 							<label>Author</label>
@@ -100,8 +113,16 @@ export default function Book(props){
 								className="form-control"
 								placeholder="Insert the author"
 								required
+								ref={register({
+									required: "This is required",
+									minLength: {
+										value: 3,
+										message: "Minimal characters is 3"
+									}
+                                })}
 							/>
 						</div>
+						{errors.author && <p style={{color: "red"}}>{errors.author.message}</p> }
 
 						<div className="form-group">
 							<label>Published Date</label>
@@ -114,8 +135,16 @@ export default function Book(props){
 								className="form-control"
 								placeholder="Insert the published date"
 								required
+								ref={register({
+									required: "This is required",
+									minLength: {
+										value: 3,
+										message: "Minimal characters is 3"
+									}
+                                })}
 							/>
 						</div>
+						{errors.published_date && <p style={{color: "red"}}>{errors.published_date.message}</p> }
 
 						<div className="form-group">
 							<label>Pages</label>
@@ -128,8 +157,17 @@ export default function Book(props){
 								className="form-control"
 								placeholder="Insert page"
 								required
+								ref={register({
+									required: "This is required",
+									minLength: {
+										value: 1,
+										message: "Minimal characters is 3"
+									}
+                                })}
 							/>
 						</div>
+						{errors.pages && <p style={{color: "red"}}>{errors.pages.message}</p> }
+
 						<div className="form-group">
 							<label>Language</label>
 							<input 
@@ -141,8 +179,16 @@ export default function Book(props){
 								className="form-control"
 								placeholder="Insert the language"
 								required
+								ref={register({
+									required: "This is required",
+									minLength: {
+										value: 3,
+										message: "Minimal characters is 3"
+									}
+                                })}
 							/>
 						</div>
+						{errors.language && <p style={{color: "red"}}>{errors.language.message}</p> }
 
 						<div className="form-group">
 							<label>Publisher ID</label>
@@ -155,18 +201,28 @@ export default function Book(props){
 								className="form-control"
 								placeholder="Insert the publisher id"
 								required
+								ref={register({
+									required: "This is required",
+									minLength: {
+										value: 3,
+										message: "Minimal characters is 3"
+									}
+                                })}
 							/>
 						</div>
+						{errors.publisher_id && <p style={{color: "red"}}>{errors.publisher_id.message}</p> }
 
 						<button className="btn btn-dark mb-4">Submit</button>
 					</form>
+					<h2>List of Books</h2>
+					<hr/>
 					<table className="table table-hover">
 						<thead className="thead-dark">
-							<tr>
+							<tr style={{textAlign: "center"}}>
 								<th>Title</th>
 								<th>Author</th>
 								<th>Pages</th>
-								<th>Published Date</th>
+								<th>Published</th>
 								<th>Language</th>
 								<th>PublisherID</th>
 								<th>Action</th>
@@ -181,8 +237,18 @@ export default function Book(props){
 							<td>{book.language}</td>
 							<td>{book.publisher_id}</td>
 							<td>
-								<button onClick={()=>handleUpdate(book.id)} className="btn btn-primary btn-sm mr-1 mb-1">Update</button>
-								<button onClick={()=>handleRemove(book.id)} className="btn btn-danger btn-sm mb-1">Delete</button>
+								<button 
+								onClick={()=>handleUpdate(book.id)} 
+								className="btn btn-primary btn-sm mr-1 mb-1"
+								>Update
+								</button>
+
+								<button 
+								onClick={()=>handleRemove(book.id)} 
+								className="btn btn-danger btn-sm mb-1"
+								style={{width: "65px"}}
+								>Delete
+								</button>
 							</td>
 							</tr>
 						))}

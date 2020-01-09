@@ -6,7 +6,7 @@ import {
 import axios from 'axios';
 
 const CardBook = (props) => {
-  const url = 'http://127.0.0.1:8000/book/'
+  const url = 'http://127.0.0.1:8001/book/'
 
 	const[Book, setBook] = useState({book: []})
 

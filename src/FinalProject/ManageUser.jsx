@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function Book(props){
 
-	const url = 'http://127.0.0.1:8000/api/users'
+	const url = 'http://127.0.0.1:8001/api/users'
 
 	const[user, setUser] = useState({user: []})
 	const [role, setRole] = useState({
@@ -35,7 +35,7 @@ export default function Book(props){
         const data = {
             roleId:role.role
         }
-        axios.put(`http://127.0.0.1:8000/api/test/user/${usersId}`, data,{
+        axios.put(`http://127.0.0.1:8001/api/test/user/${usersId}`, data,{
             headers:{
                 "authorization": sessionStorage.getItem('token')
             }

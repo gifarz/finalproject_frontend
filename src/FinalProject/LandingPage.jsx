@@ -18,10 +18,28 @@ export default function LandingPage(props) {
             position: "absolute"
         }}>
             <div className="container mt-5 landing">
-                <h1 style={{fontFamily: "Lobster, cursive", fontSize: "55px"}}>The Wonderful World of Reading</h1>
-                <p style={{fontSize: "20px", marginTop: "20px"}}>We provide a large selection of books !</p>
+                <h1 
+                style={{
+                    fontFamily: "Lobster, cursive", 
+                    fontSize: "55px"
+                    }}
+                >The Wonderful World of Reading
+                </h1>
+                <p 
+                style={{
+                    fontSize: "20px", 
+                    marginTop: "20px"
+                }}>We provide a large selection of books !
+                </p>
                 <div className="d-flex justify-content-center button mb-3">
-                    <button className="btn btn-dark btn-outline-light" onClick={(e)=>handleClick(e)}>GET STARTED</button>
+                    <button 
+                    className="btn btn-dark btn-outline-light" 
+                    onClick={(e)=>handleClick(e)}
+                    style={{
+
+                    }}
+                    >GET STARTED
+                    </button>
                 </div>
                 <p className="d-flex justify-content-center">if you like to read just click the button above</p>
             </div>

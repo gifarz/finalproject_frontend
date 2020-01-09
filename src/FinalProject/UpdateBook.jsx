@@ -14,7 +14,7 @@ function Update(props) {
         publisher_id: ''
     })
     
-    const apiUrl = 'http://127.0.0.1:8000/book/';
+    const apiUrl = 'http://127.0.0.1:8001/book/';
     const Token = sessionStorage.getItem('token')
     const Roles = sessionStorage.getItem('roles')
 

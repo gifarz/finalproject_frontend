@@ -34,6 +34,9 @@
 }
 
 .button .btn {
-    margin-top: 200px;
+    margin-top: 180px;
     width: 150px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: black;
 }

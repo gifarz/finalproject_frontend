@@ -6,13 +6,13 @@ import './style.css';
  const Register = (props) => {
 
     const {register, errors, handleSubmit} = useForm({mode: "onChange" })
-    const url = "http://127.0.0.1:8000/api/auth/signup"
+    const url = "http://127.0.0.1:8001/api/auth/signup"
     const [form,setForm ] = useState({
         name:"",
         username:"",
         email:"",
         password:"",
-        roles: ["ADMIN"]
+        roles: ["USER"]
     })
 
     const Submit = () => {
