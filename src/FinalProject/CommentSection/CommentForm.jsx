@@ -3,7 +3,7 @@ import axios from 'axios';
 import Comment from './Comment';
 import {withRouter} from 'react-router-dom';
 
-function CommentForm(props, match, id) {
+function CommentForm(props) {
 
     const [data, setData] = useState({
         message: ""
