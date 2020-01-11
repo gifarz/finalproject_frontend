@@ -8,10 +8,9 @@ import Login from './FinalProject/Login';
 import LoginSuccess from './FinalProject/LoginSuccess';
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Book from "./FinalProject/Book";
-import AddBook from './FinalProject/AddBook';
+import Book from "./FinalProject/ListBook/App";
 import CardBook from './FinalProject/CardBook/CardBook';
-import UpdateBook from './FinalProject/UpdateBook';
+import UpdateBook from './FinalProject/ListBook/UpdateBook';
 import CardDetails from "./FinalProject/CardBook/CardDetails";
 import Users from './FinalProject/ManageUser';
 import EditProfile from './FinalProject/EditProfile';
@@ -26,15 +25,12 @@ const routing = (
         <Route path="/dashboard" component={LoginSuccess} />
         <Route path="/book" component={CardBook} />
         <Route path="/addbook" component={Book} />
-        <Route path="/addbook/add" component={AddBook} />
         <Route path="/bookupdate/:id" component={UpdateBook} />
         <Route path="/bookdetails/:id" component={CardDetails} />
         <Route path="/users" component={Users} />
         <Route path="/editprofile/:id" component={EditProfile} />
     </Router>
 )
-
-
 
 ReactDOM.render(routing, document.getElementById("root"));
 

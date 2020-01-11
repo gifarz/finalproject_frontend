@@ -47,7 +47,7 @@ export default function LoginSuccess(props) {
                     <div 
                     className="card" 
                     style={{
-                        width: "600px", 
+                        width: "500px", 
                         margin: "auto", 
                         borderRadius: "10px"
                     }}>

@@ -21,7 +21,8 @@ export default function LandingPage(props) {
                 <h1 
                 style={{
                     fontFamily: "Lobster, cursive", 
-                    fontSize: "55px"
+                    fontSize: "55px",
+                    color: "white"
                     }}
                 >The Wonderful World of Reading
                 </h1>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Axios from 'axios';
 import moment from 'moment';
-import Login from './Login';
+import Login from '../Login';
 
 function Update(props) {
 

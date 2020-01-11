@@ -12,7 +12,7 @@ const CardBook = (props) => {
 
   const handleDetails = (id) => {
     console.log(id)
-    window.location.replace('/bookdetails/'+id)
+    props.history.push('/bookdetails/'+id)
   }
 
 	useEffect(
@@ -35,8 +35,8 @@ const CardBook = (props) => {
       <hr/>
       <div className="row justify-content-between">
           {Book.book.map(card => (
-            <div key={card.id}>
-              <Card style={{width: "310px"}} className="mb-4">
+            <div key={card.id} className="uk-animation-toggle" tabindex="0">
+              <Card style={{width: "310px"}} className="mb-4 uk-animation-shake">
                 <CardImg top src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkB9gxfXeF9D4ClN1-fhRO7_t3GGSvWS9Y58RyQkmQnKNZZhZ9" alt="Card image cap"
                 style={{width: "300px", height: "250px"}}
                 />

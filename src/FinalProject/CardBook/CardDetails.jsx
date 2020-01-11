@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {withRouter} from 'react-router-dom';
 import { useEffect } from "react";
 import axios from "axios";
-import CommentForm from "../CommentSection/CommentForm";
+// import CommentForm from "../CommentSection/CommentForm";
+import App from '../CommentSection/App';
 
 function CardDetails(props) {
 
@@ -51,7 +52,7 @@ function CardDetails(props) {
         </div>
       </div>
       <hr/>
-      <CommentForm />
+      <App />
     </div>
   );
 }

@@ -18,9 +18,6 @@ import './style.css'
             if(res.status === 200){
                 sessionStorage.setItem("token",res.data.accessToken);
                 sessionStorage.setItem("roles", res.data.roles)
-                alert(
-                    `Login Succes \nYour Acces Token is : ${sessionStorage.getItem('token')}`
-                )
                 window.location.replace('/dashboard/')
             } else if(res.status === 404){
                 alert('Invalid username or password')
@@ -49,6 +46,7 @@ import './style.css'
             height: "610px",
             paddingTop: "100px"
         }}>
+
             <div className="card" style={{width: "500px", margin: "auto", zIndex: 2}}>
                 <div className="card-body">
                 <form onSubmit={(e) => handleSubmit(e)}>
@@ -57,7 +55,6 @@ import './style.css'
                         <hr/>
                     </div>
                     <div className="form-group">
-{}
                         <label>Username</label>
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="inputGroupPrepend3">@</span>
@@ -87,12 +84,12 @@ import './style.css'
                     <p>Don't have an account ? Please register <a href="/register">here</a> </p>
                     <button className="btn btn-success">Login</button>
                 </form>
-                    
-            </div>
+                </div>
+            </div> 
+            
         </div>
-    </div>
     )
-
+    
 }
 
-export default Login
+export default Login;

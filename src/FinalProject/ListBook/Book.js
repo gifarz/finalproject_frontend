@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Login from './Login';
+import Login from '../Login';
 import {useForm} from 'react-hook-form'
 
 export default function Book(props){
